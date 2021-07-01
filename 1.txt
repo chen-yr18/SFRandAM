@@ -1,0 +1,9 @@
+select p.objid, p.ra, p.dec, p.petroMag_r,  s.z as redshift, s.specobjid,t.K_M_K20FE,w.w4mpro,w.ph_qual_det4
+from galaxy p, specobj s,TwoMassXSC t,WISE_xmatch x,WISE_allsky w
+where p.objid=s.bestobjid
+and t.objID=s.bestobjid
+and x.wise_cntr=w.cntr
+and x.sdss_objid=s.bestobjid
+and s.z BETWEEN 0 AND 0.1
+and t.K_M_K20FE < 13.5
+and p.petroMag_r <= 17.77
